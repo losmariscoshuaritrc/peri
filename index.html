@@ -105,26 +105,8 @@ Menú
 Cuéntanos tu experiencia
 </button>
 
-<button class="btn" onclick="document.getElementById('modalWifi').classList.add('active')">
-WiFi
-</button>
-</div>
-</div>
 
-<!-- Modal del QR WiFi -->
-<div id="modalWifi" class="modal">
-<span class="close" onclick="document.getElementById('modalWifi').classList.remove('active')">&times;</span>
-<img src="qr-wifi.png" alt="QR WiFi Los Mariskoos del Huari" />
-</div>
-
-<script>
-// Cerrar modal al hacer clic fuera de la imagen
-window.onclick = function(e) {
-const modal = document.getElementById('modalWifi');
-if (e.target === modal) {
-modal.classList.remove('active');
-}
-}
 </script>
 </body>
 </html>
+
