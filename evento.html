@@ -1,167 +1,169 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
-<title></title>
-<style>
-* { margin: 0; padding: 0; box-sizing: border-box; }
-body {
-    font-family: 'Arial Black', Arial, sans-serif;
-    background: url('fondo.jpeg') no-repeat center;
-    background-size: cover;
-    color: #000;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 30px 10px; /* Reducido para móviles */
-    position: relative;
-    overflow-x: hidden;
-}
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <title>Los Mariskoos del Huari</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Arial Black', Arial, sans-serif;
+            background: url('fondo.jpeg') no-repeat center center;
+            background-size: cover;
+            color: #000;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 30px 10px;
+            position: relative;
+            overflow-x: hidden;
+        }
 
-body::before {
-    content: "";
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    background: rgba(255, 255, 255, 0.15);
-    z-index: -1;
-}
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(255, 255, 255, 0.15);
+            z-index: -1;
+        }
 
-h1, h2, .description {
-    color: #000;
-    -webkit-text-stroke: 1px white;
-    text-stroke: 1px white;
-    text-shadow: 0 0 8px rgba(255,255,255,0.9), 2px 2px 4px rgba(0,0,0,0.3);
-    font-weight: bold;
-    letter-spacing: 1px;
-}
+        /* === NUEVO TÍTULO: tu logo "titulo.png" (más ancho y elegante) === */
+        .logo {
+            max-width: 320px;          /* tamaño perfecto para este logo horizontal */
+            margin: 25px 0 45px;
+            display: block;
+            filter: drop-shadow(3px 5px 10px rgba(0,0,0,0.5));
+            transition: transform 0.3s ease;
+        }
+        .logo:hover {
+            transform: scale(1.04);
+        }
 
-h1 {
-    margin: 15px 0 40px;
-    font-size: 2.6em;
-    text-align: center;
-    padding: 12px 25px;
-    background: rgba(0, 0, 0, 0.35);
-    border-radius: 15px;
-    backdrop-filter: blur(5px);
-    max-width: 90%;
-}
+        h2, .description {
+            color: #000;
+            -webkit-text-stroke: 1px white;
+            text-stroke: 1px white;
+            text-shadow: 0 0 8px rgba(255,255,255,0.9), 2px 2px 4px rgba(0,0,0,0.3);
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
 
-.section {
-    width: 95%;
-    max-width: 900px;
-    margin-bottom: 70px;
-    background: rgba(0, 0, 0, 0.3);
-    padding: 25px;
-    border-radius: 20px;
-    backdrop-filter: blur(6px);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
-}
+        .section {
+            width: 95%;
+            max-width: 900px;
+            margin-bottom: 70px;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 25px;
+            border-radius: 20px;
+            backdrop-filter: blur(6px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+        }
 
-.section h2 {
-    font-size: 2.2em;
-    margin-bottom: 25px;
-    text-align: center;
-}
+        .section h2 {
+            font-size: 2.2em;
+            margin-bottom: 25px;
+            text-align: center;
+        }
 
-.gallery {
-    position: relative;
-    margin: 0 auto;
-}
+        .gallery {
+            position: relative;
+            margin: 0 auto;
+        }
 
-.main-media {
-    width: 100%;
-    border-radius: 18px;
-    box-shadow: 0 12px 45px rgba(0,0,0,0.7);
-    display: block;
-    background: #000;
-}
+        .main-media {
+            width: 100%;
+            border-radius: 18px;
+            box-shadow: 0 12px 45px rgba(0,0,0,0.7);
+            display: block;
+            background: #000;
+        }
 
-.main-image { object-fit: cover; max-height: 65vh; }
-.main-video { max-height: 65vh; }
+        .main-image { object-fit: cover; max-height: 65vh; }
+        .main-video { max-height: 65vh; }
 
-.arrows {
-    position: absolute;
-    top: 50%;
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    transform: translateY(-50%);
-    pointer-events: none;
-}
+        .arrows {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+            pointer-events: none;
+        }
 
-.arrow {
-    pointer-events: all;
-    background: rgba(255, 107, 53, 0.35); /* Naranja transparente para ver fondo */
-    color: white;
-    border: 4px solid #ff6b35; /* Contorno naranja grueso */
-    font-size: 2.8em; /* Letras (flechas) más grandes y notorias */
-    font-weight: bold;
-    width: 65px; /* Flechas más pequeñas */
-    height: 65px;
-    border-radius: 50%;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 12px rgba(255,107,53,0.4);
-    backdrop-filter: blur(3px); /* Toque elegante */
-}
+        .arrow {
+            pointer-events: all;
+            background: rgba(255, 107, 53, 0.35);
+            color: white;
+            border: 4px solid #ff6b35;
+            font-size: 2.8em;
+            font-weight: bold;
+            width: 65px;
+            height: 65px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(255,107,53,0.4);
+            backdrop-filter: blur(3px);
+        }
 
-.arrow:hover {
-    background: rgba(255, 107, 53, 0.55); /* Más visible al hover */
-    transform: scale(1.15);
-    border-color: #ff8c4d; /* Contorno un poco más claro */
-    box-shadow: 0 8px 20px rgba(255,107,53,0.6);
-}
+        .arrow:hover {
+            background: rgba(255, 107, 53, 0.55);
+            transform: scale(1.15);
+            border-color: #ff8c4d;
+            box-shadow: 0 8px 20px rgba(255,107,53,0.6);
+        }
 
-.arrow:active {
-    transform: scale(0.95);
-}
+        .arrow:active {
+            transform: scale(0.95);
+        }
 
-.prev { left: 10px; } /* Más separado del borde izquierdo */
-.next { right: 10px; } /* Más separado del borde derecho */
+        .prev { left: 10px; }
+        .next { right: 10px; }
 
-.description {
-    font-size: 2.2em;
-    margin-top: 30px;
-    text-align: center;
-    padding: 10px 0;
-}
+        .description {
+            font-size: 2.2em;
+            margin-top: 30px;
+            text-align: center;
+            padding: 10px 0;
+        }
 
-video {
-    width: 100%;
-    height: auto;
-}
+        video {
+            width: 100%;
+            height: auto;
+        }
 
-/* Mejora responsiva en móviles */
-@media (max-width: 768px) {
-    body { padding: 20px 8px; }
-    h1 { font-size: 2.2em; margin-bottom: 30px; }
-    .section { padding: 20px; margin-bottom: 50px; }
-    .arrow {
-        width: 55px;
-        height: 55px;
-        font-size: 2.4em;
-    }
-    .prev { left: 5px; }
-    .next { right: 5px; }
-    .main-media { max-height: 50vh; }
-}
-</style>
+        /* Mejora responsiva en móviles */
+        @media (max-width: 768px) {
+            body { padding: 20px 8px; }
+            .logo { max-width: 260px; margin: 20px 0 35px; }
+            .section { padding: 20px; margin-bottom: 50px; }
+            .arrow {
+                width: 55px;
+                height: 55px;
+                font-size: 2.4em;
+            }
+            .prev { left: 5px; }
+            .next { right: 5px; }
+            .main-media { max-height: 50vh; }
+        }
+    </style>
 </head>
 <body>
 
-
+    <!-- TÍTULO PRINCIPAL: ahora es tu nueva imagen "titulo.png" -->
+    <img src="titulo.png" alt="Los Mariskoos del Huari" class="logo">
 
 <!-- Sección de Fotos -->
 <div class="section">
     <h2>Instalaciones</h2>
     <div class="gallery">
-        <img id="mainImage" class="main-media main-image" src="instalacion1.jpeg" alt="Instalación 1">
+        <img id="mainImage" class="main-media main-image" src="instalación1.jpeg" alt="Instalación 1">
 
         <div class="arrows">
             <button class="arrow prev" onclick="changeImage(-1)">&#10094;</button>
@@ -189,14 +191,13 @@ video {
 </div>
 
 <script>
-// Carrusel de FOTOS (actualizado con .jpeg como pusiste)
+// Carrusel de FOTOS
 const photos = [
-    "instalacion1.jpeg",
-    "instalacion2.jpeg",
-    "instalacion3.jpeg",
-    "instalacion4.jpeg",
-    "instalacion5.jpeg"
-    // Agrega más si tienes
+    "instalación1.jpeg",
+    "instalación2.jpeg",
+    "instalación3.jpeg",
+    "instalación4.jpeg",
+    "instalación5.jpeg"
 ];
 
 let photoIndex = 0;
