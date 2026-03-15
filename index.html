@@ -40,6 +40,7 @@ body {
     z-index: -1;
 }
 
+/* Contenedor principal */
 .contenido {
     position: relative;
     z-index: 2;
@@ -48,11 +49,33 @@ body {
     max-width: 500px;
 }
 
+/* Logo principal (el grande del centro) */
 .logo {
     max-width: 80%;
     height: auto;
     margin-bottom: 30px;
     text-shadow: 0 0 15px rgba(0,0,0,0.8);
+}
+
+/* Instagram logo - esquina superior izquierda */
+.ig-container {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    z-index: 10;
+}
+
+.ig-icon {
+    width: 55px;
+    height: 55px;
+    transition: transform 0.25s ease, opacity 0.25s ease;
+    opacity: 0.92;
+    cursor: pointer;
+}
+
+.ig-icon:hover {
+    transform: scale(1.15);
+    opacity: 1;
 }
 
 .botones {
@@ -89,10 +112,19 @@ body {
 
 <video autoplay muted loop playsinline id="bg-video">
     <source src="vide1.mp4" type="video/mp4">
-    
 </video>
 
 <div class="overlay"></div>
+
+<!-- Instagram icon -->
+<div class="ig-container">
+    <img 
+        src="ig.png" 
+        alt="Instagram Los Mariskoos" 
+        class="ig-icon"
+        onclick="window.open('https://www.instagram.com/losmariskoos?igsh=MWx0Nm81YXcwcHczcQ==', '_blank')"
+    >
+</div>
 
 <div class="contenido">
     <img src="logo.png" alt="Los Mariskoos del Huari" class="logo">
