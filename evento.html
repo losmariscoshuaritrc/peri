@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
     <title></title>
     
-    <!-- Fuente similar a la de tu imagen -->
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
     
     <style>
@@ -44,14 +43,13 @@
             transform: scale(1.04);
         }
 
-        /* === TÍTULOS Y DESCRIPCIONES CON FUENTE NUEVA Y COLOR BLANCO === */
         h2, .description {
             font-family: 'Bebas Neue', 'Arial Black', Arial, sans-serif;
-            color: #ffffff;                    
+            color: #ffffff;
             text-shadow: 2px 2px 6px rgba(0,0,0,0.7);
             font-weight: bold;
             letter-spacing: 2px;
-            font-size: 2.4em;                
+            font-size: 2.4em;
         }
 
         .section {
@@ -141,7 +139,6 @@
             height: auto;
         }
 
-        /* Responsivo */
         @media (max-width: 768px) {
             body { padding: 20px 8px; }
             .logo { max-width: 260px; margin: 20px 0 35px; }
@@ -157,37 +154,33 @@
 
     <img src="titulo.png" alt="Los Mariskoos del Huari" class="logo">
 
-    <!-- Sección de Fotos -->
+    <!-- Sección de Fotos (sin cambios) -->
     <div class="section">
         <h2>Instalaciones</h2>
         <div class="gallery">
             <img id="mainImage" class="main-media main-image" src="instalación1.jpeg" alt="Instalación 1">
             <div class="arrows">
-                <button class="arrow prev" onclick="changeImage(-1)">&#10094;</button>
-                <button class="arrow next" onclick="changeImage(1)">&#10095;</button>
+                <button class="arrow prev" onclick="changeImage(-1)">❮</button>
+                <button class="arrow next" onclick="changeImage(1)">❯</button>
             </div>
         </div>
         <div class="description"></div>
     </div>
 
-    <!-- Sección de Videos -->
+    <!-- Sección de Videos - SIN FLECHAS y reproducción automática secuencial -->
     <div class="section">
         <h2>Experiencia</h2>
         <div class="gallery">
-            <video id="mainVideo" class="main-media main-video" controls autoplay muted loop playsinline>
-                <source src="video1.mp4" type="video/mp4">
+            <video id="mainVideo" class="main-media main-video" controls autoplay muted playsinline>
+                <source src="video2.mp4" type="video/mp4">
                 Tu navegador no soporta videos.
             </video>
-            <div class="arrows">
-                <button class="arrow prev" onclick="changeVideo(-1)">&#10094;</button>
-                <button class="arrow next" onclick="changeVideo(1)">&#10095;</button>
-            </div>
         </div>
         <div class="description"></div>
     </div>
 
 <script>
-// Carrusel de FOTOS
+// Carrusel de FOTOS (sin cambios)
 const photos = [
     "instalacion1.jpeg", 
     "instalacion2.jpeg", 
@@ -205,18 +198,13 @@ const photos = [
     "instalacion14.jpeg",
     "instalacion15.jpeg",
     "instalacion16.jpeg",
-    "instalacion17.jpg",
-    "instalacion18.jpg",
-    "instalacion19.jpg",
-    "instalacion20.jpg",
-    "instalacion21.jpg",
-    "instalacion22.jpg",
-    "instalacion23.jpg",
-    "instalacion24.jpg",
-    "instalacion25.jpg",
-    "instalacion26.jpg",
-    "instalacion27.jpg",
-    "instalacion28.jpg",
+    "instalacion17.jpeg",
+    "instalacion18.jpeg",
+    "instalacion19.jpeg",
+    "instalacion20.jpeg",
+    "instalacion21.jpeg",
+    "instalacion22.jpeg",
+    "instalacion23.jpeg",
 ];
 let photoIndex = 0;
 const mainImage = document.getElementById("mainImage");
@@ -229,27 +217,38 @@ function changeImage(direction) {
     mainImage.alt = "Instalación " + (photoIndex + 1);
 }
 
-// Carrusel de VIDEOS
+// Carrusel automático de VIDEOS
 const videos = [
     "video2.mp4", 
-    "video3.mp4",    
+    "video3.mp4"
 ];
 let videoIndex = 0;
 const mainVideo = document.getElementById("mainVideo");
 
-function changeVideo(direction) {
-    videoIndex += direction;
-    if (videoIndex >= videos.length) videoIndex = 0;
-    if (videoIndex < 0) videoIndex = videos.length - 1;
-    mainVideo.pause();
+function playNextVideo() {
+    videoIndex = (videoIndex + 1) % videos.length; // 0 → 1 → 0 → 1...
     mainVideo.querySelector('source').src = videos[videoIndex];
     mainVideo.load();
     mainVideo.play().catch(() => {});
 }
 
-// Inicializar
+// Cuando termina el video actual → pasa al siguiente automáticamente
+mainVideo.addEventListener('ended', playNextVideo);
+
+// Iniciar la primera reproducción
+mainVideo.play().catch(() => {});
+
+// Opcional: si quieres que inicie exactamente desde el primer video al cargar
+videoIndex = 0;
+mainVideo.querySelector('source').src = videos[videoIndex];
+mainVideo.load();
+
+// Inicializar fotos
 changeImage(0);
-changeVideo(0);
+</script>
+
+</body>
+</html>
 </script>
 
 </body>
