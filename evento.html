@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
-    <title></title>
-    
+    <title>Los Mariskoos del Huari - Instalaciones & Experiencia</title>
+   
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
-    
+   
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
@@ -22,7 +22,6 @@
             position: relative;
             overflow-x: hidden;
         }
-
         body::before {
             content: "";
             position: fixed;
@@ -30,6 +29,35 @@
             width: 100%; height: 100%;
             background: rgba(255, 255, 255, 0.15);
             z-index: -1;
+        }
+
+        /* Botón discreto con flecha.png arriba izquierda */
+        .back-btn {
+            position: fixed;
+            top: 15px;
+            left: 15px;
+            z-index: 1000;
+            width: 48px;
+            height: 48px;
+            background: rgba(0, 0, 0, 0.4);
+            border-radius: 50%;
+            border: 2px solid rgba(255, 255, 255, 0.6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            backdrop-filter: blur(4px);
+            box-shadow: 0 3px 12px rgba(0,0,0,0.5);
+        }
+        .back-btn:hover {
+            background: rgba(255, 107, 53, 0.55);
+            transform: scale(1.12);
+            border-color: #ff8c4d;
+        }
+        .back-btn img {
+            width: 26px;
+            height: 26px;
         }
 
         .logo {
@@ -42,7 +70,6 @@
         .logo:hover {
             transform: scale(1.04);
         }
-
         h2, .description {
             font-family: 'Bebas Neue', 'Arial Black', Arial, sans-serif;
             color: #ffffff;
@@ -51,7 +78,6 @@
             letter-spacing: 2px;
             font-size: 2.4em;
         }
-
         .section {
             width: 95%;
             max-width: 900px;
@@ -62,17 +88,14 @@
             backdrop-filter: blur(6px);
             box-shadow: 0 10px 30px rgba(0,0,0,0.4);
         }
-
         .section h2 {
             text-align: center;
             margin-bottom: 25px;
         }
-
         .gallery {
             position: relative;
             margin: 0 auto;
         }
-
         .main-media {
             width: 100%;
             border-radius: 18px;
@@ -80,10 +103,8 @@
             display: block;
             background: #000;
         }
-
         .main-image { object-fit: cover; max-height: 65vh; }
         .main-video { max-height: 65vh; }
-
         .arrows {
             position: absolute;
             top: 50%;
@@ -93,7 +114,6 @@
             transform: translateY(-50%);
             pointer-events: none;
         }
-
         .arrow {
             pointer-events: all;
             background: rgba(255, 107, 53, 0.35);
@@ -112,33 +132,27 @@
             box-shadow: 0 4px 12px rgba(255,107,53,0.4);
             backdrop-filter: blur(3px);
         }
-
         .arrow:hover {
             background: rgba(255, 107, 53, 0.55);
             transform: scale(1.15);
             border-color: #ff8c4d;
             box-shadow: 0 8px 20px rgba(255,107,53,0.6);
         }
-
         .arrow:active {
             transform: scale(0.95);
         }
-
         .prev { left: 10px; }
         .next { right: 10px; }
-
         .description {
             font-size: 2.2em;
             margin-top: 30px;
             text-align: center;
             padding: 10px 0;
         }
-
         video {
             width: 100%;
             height: auto;
         }
-
         @media (max-width: 768px) {
             body { padding: 20px 8px; }
             .logo { max-width: 260px; margin: 20px 0 35px; }
@@ -147,14 +161,29 @@
             .prev { left: 5px; }
             .next { right: 5px; }
             .main-media { max-height: 50vh; }
+            .back-btn {
+                top: 12px;
+                left: 12px;
+                width: 42px;
+                height: 42px;
+            }
+            .back-btn img {
+                width: 22px;
+                height: 22px;
+            }
         }
     </style>
 </head>
 <body>
 
+    <!-- Botón discreto para volver al inicio -->
+    <div class="back-btn" onclick="window.location.href='index.html';">
+        <img src="flecha.png" alt="Volver arriba">
+    </div>
+
     <img src="titulo.png" alt="Los Mariskoos del Huari" class="logo">
 
-    <!-- Sección de Fotos (sin cambios) -->
+    <!-- Sección de Fotos -->
     <div class="section">
         <h2>Instalaciones</h2>
         <div class="gallery">
@@ -167,7 +196,7 @@
         <div class="description"></div>
     </div>
 
-    <!-- Sección de Videos - SIN FLECHAS y reproducción automática secuencial -->
+    <!-- Sección de Videos -->
     <div class="section">
         <h2>Experiencia</h2>
         <div class="gallery">
@@ -180,10 +209,10 @@
     </div>
 
 <script>
-// Carrusel de FOTOS (sin cambios)
+// Carrusel de FOTOS
 const photos = [
-    "instalacion1.jpeg", 
-    "instalacion2.jpeg", 
+    "instalacion1.jpeg",
+    "instalacion2.jpeg",
     "instalacion3.jpeg",
     "instalacion4.jpeg",
     "instalacion5.jpeg",
@@ -206,16 +235,13 @@ const photos = [
     "instalacion22.jpeg",
     "instalacion23.jpeg",
     "instalacion24.jpeg",
-    "instalacion25.jpeg",  
+    "instalacion25.jpeg",
     "instalacion26.jpeg",
     "instalacion27.jpeg",
     "instalacion28.jpeg",
-    
-    
 ];
 let photoIndex = 0;
 const mainImage = document.getElementById("mainImage");
-
 function changeImage(direction) {
     photoIndex += direction;
     if (photoIndex >= photos.length) photoIndex = 0;
@@ -226,36 +252,26 @@ function changeImage(direction) {
 
 // Carrusel automático de VIDEOS
 const videos = [
-    "video2.mp4", 
+    "video2.mp4",
     "video3.mp4"
 ];
 let videoIndex = 0;
 const mainVideo = document.getElementById("mainVideo");
-
 function playNextVideo() {
-    videoIndex = (videoIndex + 1) % videos.length; // 0 → 1 → 0 → 1...
+    videoIndex = (videoIndex + 1) % videos.length;
     mainVideo.querySelector('source').src = videos[videoIndex];
     mainVideo.load();
     mainVideo.play().catch(() => {});
 }
-
-// Cuando termina el video actual → pasa al siguiente automáticamente
 mainVideo.addEventListener('ended', playNextVideo);
-
-// Iniciar la primera reproducción
 mainVideo.play().catch(() => {});
-
-// Opcional: si quieres que inicie exactamente desde el primer video al cargar
+// Iniciar desde el primer video
 videoIndex = 0;
 mainVideo.querySelector('source').src = videos[videoIndex];
 mainVideo.load();
 
-// Inicializar fotos
+// Inicializar galería de fotos
 changeImage(0);
-</script>
-
-</body>
-</html>
 </script>
 
 </body>
